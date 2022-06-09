@@ -14,24 +14,10 @@ void print(vector<vector<int>> &v){
     }
 }
 
-int main(){
-
-    vector<vector<int>> v;
-    int r, c;
-    cin >> r >> c;
-
-    for(int i=0; i<r; ++i){
-        vector<int> temp;
-        for(int j=0; j<c; ++j){
-            int x;
-            cin >> x;
-            temp.push_back(x);
-        }
-        v.push_back(temp);
-    }
-
-    vector<int> row(c, -1);
-    vector<int> column(r, -1);
+void setMatrixZero(vector<vector<int>> &v){
+    int r = v.size(), c = v[0].size();
+    vector<int> row(r, -1);
+    vector<int> column(c, -1);
 
     // 1st traversal - TC : O(n*m)
     for(int i=0; i<v.size(); ++i){
@@ -55,6 +41,27 @@ int main(){
                 v[i][j] = 0;
         }
     }
+}
+
+int main(){
+
+    vector<vector<int>> v;
+    int r, c;
+    cin >> r >> c;
+
+    for(int i=0; i<r; ++i){
+        vector<int> temp;
+        for(int j=0; j<c; ++j){
+            int x;
+            cin >> x;
+            temp.push_back(x);
+        }
+        v.push_back(temp);
+    }
+
+    setMatrixZero(v);
 
     print(v);
+
+    return 0;
 }
