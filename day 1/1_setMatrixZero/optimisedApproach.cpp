@@ -6,22 +6,7 @@
 #include<vector>
 using namespace std;
 
-int main(){
-    vector<vector<int>> v;
-
-    int row, col;
-    cin >> row >> col;
-
-    for(int i=0; i<row; ++i){
-        vector<int> temp;
-        for(int j=0; j<col; ++j){
-            int x;
-            cin >> x;
-            temp.push_back(x);
-        }
-        v.push_back(temp);
-    }
-
+void setMatrixZeros(vector<vector<int>> &v){
     // 1st traversal
     int col0 = 1;  // an int variable for storing status of column 0 i.e, 1st column.
     for(int i=0; i<v.size(); ++i){
@@ -44,6 +29,26 @@ int main(){
         if(col0 == 0)
             v[i][0] = 0;
     }
+}
+
+int main(){
+    vector<vector<int>> v;
+
+    // input vector
+    int row, col;
+    cin >> row >> col;
+
+    for(int i=0; i<row; ++i){
+        vector<int> temp;
+        for(int j=0; j<col; ++j){
+            int x;
+            cin >> x;
+            temp.push_back(x);
+        }
+        v.push_back(temp);
+    }
+
+    setMatrixZeros(v);
 
     // print vector
     for(auto &it : v){
