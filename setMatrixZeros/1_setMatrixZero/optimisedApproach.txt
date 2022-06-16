@@ -1,0 +1,81 @@
+// Completely wrong
+// Completely wrong logic
+// but can consider for understaning what went wrong and what not to do
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+// 2nd traversal
+// void reversePrint(vector<vector<int>> &v){
+//     vector<vector<int>> :: iterator it;
+//     for(it = v.rbegin(); it != v.rend(); ++it){
+//         for(auto x = it.rbegin(); x != it.rend(); ++x){
+            
+//         }
+//     }
+// }
+
+
+// 2nd traversal
+void reverseTraversal(vector<vector<int>> &v, int firstColEle){
+    int srow = v.size()-1;           // srow ==> size of row
+    int scol = v[0].size()-1;        // scol ==> size of col
+    for(int i=srow; i>=0; --i){
+        for(int j=scol; j>=0; --j){
+            if(j == 0 && (firstColEle == 0 || v[i][0] == 0))
+                v[i][0] = 0;
+            else if(v[i][0] == 0 || v[0][j] == 0)
+                v[i][j] = 0;
+        }
+    }
+}
+
+// 3rd traversal
+void print(vector<vector<int>> &v){
+    for(auto &it : v){
+        for(auto &x : it)
+            cout << x << " ";
+        cout << endl;
+    }
+}
+
+
+int main(){
+    vector<vector<int>> v;
+
+    int row, col;
+    cin >> row >> col;
+
+    for(int i=0; i<row; ++i){
+        vector<int> temp;
+        for(int j=0; j<col; ++j){
+            int x;
+            cin >> x;
+            temp.push_back(x);
+        }
+        v.push_back(temp);
+    }
+
+    // 1st traversal
+    int firstColEle = 1;
+    for(int i=0; i<v.size(); ++i){
+        for(int j=0; j<v[0].size(); ++j){
+            if(v[0][0] == 0 || (j == 0 && v[i][0] == 0)){
+                v[i][0] = 0;
+                firstColEle = 0;
+            }
+            else if(v[i][j] == 0){
+                v[0][j] = 0;
+                v[i][0] = 0;
+            }
+        }
+    }
+
+    reverseTraversal(v, firstColEle);
+
+    print(v);
+
+    return 0;
+
+}
